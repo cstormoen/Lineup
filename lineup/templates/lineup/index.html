@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Lineups</title>
-</head>
-<body>
+{% extends "lineup/base.html" %}
+
+{% block title %} Frontpage {% endblock %}
+
+{% block content %}
+
+<h1>Featured lineups</h1>
+
 {% if lineup_list %}
     <ul>
         {% for lineup in lineup_list %}
-        <li>{{ lineup.title }}</li>
+        <li><a href="{% url 'view' lineup.id %}">{{ lineup.title }}</a></li>
         {% endfor %}
     </ul>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}

@@ -6,6 +6,9 @@ class Lineup(models.Model):
     title = models.CharField(max_length=200)
     published = models.DateTimeField('date published')
 
+    def sorted_entries_by_rank(self):
+        return self.entry_set.order_by('rank')
+
     def __str__(self):
         return self.title
 

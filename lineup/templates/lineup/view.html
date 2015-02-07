@@ -1,0 +1,17 @@
+{% extends "lineup/base.html" %}
+
+{% block title %}{{ lineup.title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ lineup.title }}</h1>
+
+<ol>
+    {% for entry in lineup.sorted_entries_by_rank %}
+    <li>{{ entry.text }}</li>
+    {% endfor %}
+</ol>
+
+<a class="button" href="{% url 'edit' lineup.id %}">Edit</a>
+
+{% endblock %}
