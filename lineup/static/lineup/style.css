@@ -1,0 +1,7 @@
+.entry li {
+    list-style: none;
+    display: inline;
+}
+.entry label {
+    display: inline;
+}
