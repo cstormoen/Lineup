@@ -1,4 +1,5 @@
-from django.forms import ModelForm, TextInput, NumberInput
+from django.forms import ModelForm, TextInput, NumberInput, PasswordInput
+from django.contrib.auth.models import User
 from lineup.models import Lineup, Entry
 
 
@@ -23,4 +24,13 @@ class LineupForm(ModelForm):
         fields = ['title']
         widgets = {
             'title': TextInput(attrs={'size': 30})
+        }
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+        widgets = {
+            'password': PasswordInput()
         }

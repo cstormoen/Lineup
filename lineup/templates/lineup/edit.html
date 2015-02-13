@@ -12,7 +12,10 @@
 <form action="{% url 'edit' lineup.id %}" method="post">
     {% csrf_token %}
     {{ lineup_form.management_form }}
-    {{ lineup_form }}
+
+    {% if lineup.id = 0 %}
+        {{ lineup_form }}
+    {% endif %}
 
     <hr/>
 
@@ -26,7 +29,7 @@
 
     <div class="twelve columns">
         <input class="button-primary" value="Save" type="submit">
-        <a class="button" href="{% url 'view' 1 %}">Back</a>
+        <a class="button" href="{% url 'view' lineup.id %}">Back</a>
     </div>
 </form>
 

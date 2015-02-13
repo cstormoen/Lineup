@@ -1,0 +1,19 @@
+{% extends "lineup/base.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<h1>Login to Lineup</h1>
+
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    Username: <input type="text" name="username" value="" size="50" />
+    <br />
+    Password: <input type="password" name="password" value="" size="50" />
+    <br />
+
+    <input type="submit" value="submit" />
+</form>
+
+{% endblock %}

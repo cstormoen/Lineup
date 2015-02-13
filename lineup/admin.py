@@ -7,6 +7,7 @@ class OrderedEntryInline(BaseInlineFormSet):
     def get_queryset(self):
         return super(OrderedEntryInline, self).get_queryset().order_by('rank')
 
+
 class EntryInline(admin.TabularInline):
     model = Entry
     formset = OrderedEntryInline
