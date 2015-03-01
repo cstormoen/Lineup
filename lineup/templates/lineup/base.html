@@ -8,9 +8,43 @@
     <link rel="stylesheet" type="text/css" href="{% static 'lineup/normalize.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'lineup/skeleton.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'lineup/style.css' %}" />
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
 </head>
 <body>
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item">
+                <i class="fa fa-linux"></i>
+                <a class="navbar-link" href="{% url 'index' %}">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="navbar-item">
+                <i class="fa fa-list"></i>
+                <a class="navbar-link" href="{% url 'new' %}">
+                    New lineup
+                </a>
+            </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="navbar-item">
+                <i class="fa fa-user"></i>
+                <a class="navbar-link" href="{% url 'logout' %}">
+                    {{user.username}} (Logout)
+                </a>
+            </li>
+            {% else %}
+            <li class="navbar-item">
+                <i class="fa fa-user"></i>
+                <a class="navbar-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="navbar-item">
+                <i class="fa fa-user-plus"></i>
+                <a class="navbar-link" href="{% url 'register' %}">Register</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
     <div class="container">
         {% block content %}{% endblock %}
     </div>

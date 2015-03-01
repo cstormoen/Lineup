@@ -9,20 +9,16 @@
 {{ error_message }}
 {% endif %}
 
+<hr/>
+
 <form action="{% url 'edit' lineup.id %}" method="post">
     {% csrf_token %}
-    {{ lineup_form.management_form }}
-
-    {% if lineup.id = 0 %}
-        {{ lineup_form }}
-    {% endif %}
-
-    <hr/>
 
     <h3>Entries</h3>
     {{ entry_form_set.management_form }}
     {% for form in entry_form_set %}
         <ul class="entry">
+            {{ form.management_form }}
             {{ form.as_ul }}
         </ul>
     {% endfor %}

@@ -34,22 +34,20 @@ def edit(request, lineup_id):
     EntryFormSet = inlineformset_factory(Lineup, Entry, form=EntryForm)
 
     if request.method == 'POST':
-        lineup_form = LineupForm(request.POST, instance=lineup)
         entry_form_set = EntryFormSet(request.POST, instance=lineup)
 
-        if lineup_form.is_valid() and entry_form_set.is_valid():
-            lineup_form.save()
+        print(entry_form_set.is_valid())
+
+        if entry_form_set.is_valid():
             entry_form_set.save()
 
         return render(request, 'lineup/view.html', {'lineup': lineup})
 
     else:
-        lineup_form = LineupForm(instance=lineup)
         entry_form_set = EntryFormSet(instance=lineup)
 
     return render(request, 'lineup/edit.html', {
         'lineup': lineup,
-        'lineup_form': lineup_form,
         'entry_form_set': entry_form_set
     })
 
@@ -105,7 +103,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect('index')
+                return redirect(request.POST.get('next', 'index'))
             else:
                 return HttpResponseForbidden("User no longer active.")
         else:
